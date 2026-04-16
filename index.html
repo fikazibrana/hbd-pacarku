@@ -5,297 +5,268 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy 23rd Birthday, Sania Wildasari 💕</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600&display=swap');
-        
-        :root {
-            --pink-light: #FCE4EC;
-            --pink: #F8BBD0;
-        }
-        
         body {
             font-family: 'Poppins', sans-serif;
             scroll-behavior: smooth;
-            overflow-x: hidden;
         }
+        .section { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; }
+        .title-font { font-family: 'Montserrat', sans-serif; font-weight: 700; }
         
-        .section {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* Animasi Envelope */
+        .envelope {
+            width: 380px;
+            height: 260px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
             position: relative;
+            overflow: hidden;
+            cursor: pointer;
         }
-        
-        .title-font {
-            font-family: 'Montserrat', sans-serif;
-        }
-        
-        .heart-particle {
+        .flap {
             position: absolute;
-            font-size: 1.5rem;
+            top: 0; left: 0; width: 100%; height: 55%;
+            background: linear-gradient(#F8BBD0, #FCE4EC);
+            clip-path: polygon(0 0, 50% 85%, 100% 0);
+            transition: transform 1.6s cubic-bezier(0.6, 0, 0.3, 1);
+            z-index: 2;
+        }
+        .envelope.opened .flap { transform: rotateX(180deg); }
+        
+        .floating-heart {
+            position: absolute;
+            font-size: 1.8rem;
             color: #F8BBD0;
-            opacity: 0.6;
-            pointer-events: none;
-            animation: floatHeart linear infinite;
+            opacity: 0.7;
+            animation: floatHeart 15s linear infinite;
             z-index: 1;
         }
-        
         @keyframes floatHeart {
             0% { transform: translateY(100vh) rotate(0deg); }
-            100% { transform: translateY(-100px) rotate(360deg); }
-        }
-        
-        .confetti {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            animation: confetti-fall 4s linear forwards;
-        }
-        
-        @keyframes confetti-fall {
-            0% { transform: translateY(-100vh) rotate(0deg); }
-            100% { transform: translateY(100vh) rotate(720deg); }
-        }
-        
-        .audio-control {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 50;
-            background: white;
-            padding: 10px 16px;
-            border-radius: 9999px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            100% { transform: translateY(-100px) rotate(720deg); }
         }
     </style>
 </head>
 <body class="bg-white text-[#4A4A4A]">
 
-    <!-- Page 1: Cover -->
-    <section id="page1" class="section bg-gradient-to-br from-[#FCE4EC] to-white">
-        <div class="text-center z-10 px-6" data-aos="fade-up">
-            <h1 class="text-5xl md:text-7xl font-light title-font tracking-widest mb-4 text-[#4A4A4A]">
-                A Special Gift
-            </h1>
-            <p class="text-2xl md:text-3xl font-light mb-12 text-[#4A4A4A]/80">
-                For You, Sania Wildasari
-            </p>
-            <button onclick="openMessage()" 
-                    class="px-12 py-6 bg-[#F8BBD0] hover:bg-[#F8BBD0]/90 text-white text-xl font-medium rounded-2xl shadow-lg transition-all duration-300">
-                Open Message 💌
-            </button>
-            <p class="mt-8 text-sm text-[#4A4A4A]/60">Scroll down after opening</p>
-        </div>
+    <!-- PAGE 1: COVER + TOMBOL BUKA -->
+    <section id="cover" class="section bg-gradient-to-br from-[#FCE4EC] to-white relative overflow-hidden">
+        <div id="hearts-container" class="absolute inset-0 pointer-events-none"></div>
         
-        <!-- Floating hearts background -->
-        <div id="hearts-container" class="absolute inset-0 overflow-hidden"></div>
-    </section>
-
-    <!-- Page 2: Foreword -->
-    <section id="page2" class="section bg-white">
-        <div class="max-w-2xl mx-auto px-6 text-center" data-aos="fade-up">
-            <h2 class="text-4xl md:text-5xl title-font mb-10">Dear Sania,</h2>
-            <p class="text-lg leading-relaxed text-[#4A4A4A]/90">
-                I, Fika Zibrana Musyafa, want to express my deepest gratitude for your love and for staying by my side for almost 3 years.
-            </p>
-        </div>
-    </section>
-
-    <!-- Page 3: The Beginning -->
-    <section id="page3" class="section bg-[#FCE4EC]/30">
-        <div class="max-w-2xl mx-auto px-6 text-center" data-aos="fade-up">
-            <h2 class="text-4xl md:text-5xl title-font mb-10">The Beginning</h2>
-            <p class="text-lg leading-relaxed text-[#4A4A4A]/90">
-                I never imagined that a simple meeting at an organizational event would lead us to where we are today.
-            </p>
-        </div>
-    </section>
-
-    <!-- Page 4: The Journey -->
-    <section id="page4" class="section bg-white">
-        <div class="max-w-2xl mx-auto px-6 text-center" data-aos="fade-up">
-            <h2 class="text-4xl md:text-5xl title-font mb-10">Our Beautiful Journey</h2>
-            <p class="text-lg leading-relaxed text-[#4A4A4A]/90">
-                From colleagues in an organization to partners in life — every moment with you has been a beautiful story I cherish deeply.
-            </p>
-        </div>
-    </section>
-
-    <!-- Page 5: Happiness -->
-    <section id="page5" class="section bg-[#FCE4EC]/30">
-        <div class="max-w-2xl mx-auto px-6 text-center" data-aos="fade-up">
-            <h2 class="text-4xl md:text-5xl title-font mb-10">Happiness</h2>
-            <p class="text-lg leading-relaxed text-[#4A4A4A]/90">
-                Thank you for making the last 3 years the happiest chapters of my life.
-            </p>
-        </div>
-    </section>
-
-    <!-- Page 6: Birthday Big Moment -->
-    <section id="page6" class="section bg-gradient-to-br from-[#F8BBD0] to-[#FCE4EC] relative overflow-hidden">
         <div class="text-center z-10 px-6" data-aos="fade-up">
-            <div id="confetti-container" class="absolute inset-0 pointer-events-none"></div>
-            <h1 class="text-5xl md:text-7xl title-font leading-none mb-6 text-white drop-shadow-md">
-                Happy 23rd Birthday,<br>
-                <span class="block mt-4 text-6xl md:text-8xl">Sania Wildasari</span>
-            </h1>
-            <p class="text-2xl text-white/90 mt-8">💕 May this year bring you endless joy</p>
+            <h1 class="text-5xl md:text-7xl title-font tracking-wider mb-6">Hadiah Spesial</h1>
+            <p class="text-3xl md:text-4xl font-light mb-12">Untuk Sania Wildasari</p>
+            
+            <div class="mx-auto mb-10">
+                <div id="envelope" class="envelope mx-auto flex items-center justify-center text-6xl">
+                    <div class="flap flex items-center justify-center">💌</div>
+                    <div class="text-7xl">🌹</div>
+                </div>
+            </div>
+            
+            <button onclick="openEnvelope()" 
+                    class="px-16 py-7 bg-[#F8BBD0] hover:bg-[#f4a3c4] text-white text-2xl font-semibold rounded-3xl shadow-xl transition-all">
+                Buka Undangan
+            </button>
         </div>
     </section>
 
-    <!-- Page 7: Wishes -->
-    <section id="page7" class="section bg-white">
+    <!-- PAGE 2: Kata Pengantar -->
+    <section id="page2" class="section bg-white hidden">
         <div class="max-w-2xl mx-auto px-6 text-center" data-aos="fade-up">
-            <h2 class="text-4xl md:text-5xl title-font mb-12">My Wishes for You</h2>
-            <div class="space-y-8 text-left text-lg">
-                <p>• Semoga kesehatan selalu menyertaimu setiap hari.</p>
-                <p>• Semoga kebahagiaan selalu mengisi hatimu.</p>
-                <p>• Semoga semua impian dan kesuksesanmu tercapai dengan mudah.</p>
-                <p>• Dan semoga kita terus bersama, menjalani hari-hari indah ini.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Page 8 & 9: Photo Gallery (2 sections) -->
-    <section id="page8" class="section bg-[#FCE4EC]/30">
-        <div class="max-w-5xl mx-auto px-6">
-            <h2 class="text-4xl title-font text-center mb-12" data-aos="fade-up">Our Memories</h2>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-4" data-aos="fade-up">
-                <img src="https://picsum.photos/id/1015/600/800" alt="Memory 1" class="rounded-2xl shadow-md object-cover h-80 w-full">
-                <img src="https://picsum.photos/id/1027/600/800" alt="Memory 2" class="rounded-2xl shadow-md object-cover h-80 w-full">
-                <img src="https://picsum.photos/id/106/600/800" alt="Memory 3" class="rounded-2xl shadow-md object-cover h-80 w-full">
-                <img src="https://picsum.photos/id/133/600/800" alt="Memory 4" class="rounded-2xl shadow-md object-cover h-80 w-full">
-                <img src="https://picsum.photos/id/201/600/800" alt="Memory 5" class="rounded-2xl shadow-md object-cover h-80 w-full">
-                <img src="https://picsum.photos/id/251/600/800" alt="Memory 6" class="rounded-2xl shadow-md object-cover h-80 w-full">
-            </div>
-        </div>
-    </section>
-
-    <section id="page9" class="section bg-white">
-        <div class="max-w-5xl mx-auto px-6">
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-4" data-aos="fade-up">
-                <img src="https://picsum.photos/id/1005/600/800" alt="Memory 7" class="rounded-2xl shadow-md object-cover h-80 w-full">
-                <img src="https://picsum.photos/id/1016/600/800" alt="Memory 8" class="rounded-2xl shadow-md object-cover h-80 w-full">
-                <img src="https://picsum.photos/id/133/600/800" alt="Memory 9" class="rounded-2xl shadow-md object-cover h-80 w-full">
-            </div>
-        </div>
-    </section>
-
-    <!-- Page 10: Closing -->
-    <section id="page10" class="section bg-gradient-to-br from-[#F8BBD0] to-white text-center">
-        <div class="max-w-2xl mx-auto px-6" data-aos="fade-up">
-            <h2 class="text-4xl title-font mb-10">Closing</h2>
-            <p class="text-lg leading-relaxed mb-12">
-                Forgive me for all my shortcomings. I am still learning, but I promise to love you better every day.
+            <h2 class="text-4xl md:text-5xl title-font mb-10">Kata Pengantar</h2>
+            <p class="text-xl leading-relaxed">
+                Saya, Fika Zibrana Musyafa, ingin mengungkapkan rasa syukur yang terdalam atas cinta kamu dan karena kamu selalu berada di sisi saya hampir 3 tahun ini.
             </p>
-            <p class="text-3xl font-light text-[#F8BBD0]">I love you always, Sania 💕</p>
-            <p class="mt-16 text-sm text-[#4A4A4A]/60">— Fika Zibrana Musyafa</p>
         </div>
     </section>
 
-    <!-- Audio Control -->
-    <div class="audio-control flex items-center gap-3">
+    <!-- PAGE 3: Awal Pertemuan -->
+    <section id="page3" class="section bg-[#FCE4EC]/30 hidden">
+        <div class="max-w-2xl mx-auto px-6 text-center" data-aos="fade-up">
+            <h2 class="text-4xl md:text-5xl title-font mb-10">Awal Pertemuan</h2>
+            <p class="text-xl leading-relaxed">
+                Saya tidak pernah menyangka bahwa pertemuan sederhana di acara organisasi akan membawa kita sampai di titik ini.
+            </p>
+        </div>
+    </section>
+
+    <!-- PAGE 4: Perjalanan -->
+    <section id="page4" class="section bg-white hidden">
+        <div class="max-w-2xl mx-auto px-6 text-center" data-aos="fade-up">
+            <h2 class="text-4xl md:text-5xl title-font mb-10">Perjalanan Kita</h2>
+            <p class="text-xl leading-relaxed">
+                Dari rekan kerja di organisasi menjadi pasangan hidup — setiap momen bersama kamu adalah cerita indah yang saya simpan dalam hati.
+            </p>
+        </div>
+    </section>
+
+    <!-- PAGE 5: Kebahagiaan -->
+    <section id="page5" class="section bg-[#FCE4EC]/30 hidden">
+        <div class="max-w-2xl mx-auto px-6 text-center" data-aos="fade-up">
+            <h2 class="text-4xl md:text-5xl title-font mb-10">Kebahagiaan</h2>
+            <p class="text-xl leading-relaxed">
+                Terima kasih telah menjadikan hampir 3 tahun terakhir sebagai bab paling bahagia dalam hidup saya.
+            </p>
+        </div>
+    </section>
+
+    <!-- PAGE 6: Selamat Ulang Tahun -->
+    <section id="page6" class="section bg-gradient-to-br from-[#F8BBD0] to-[#FCE4EC] hidden relative overflow-hidden">
+        <div id="confetti-container" class="absolute inset-0 pointer-events-none"></div>
+        <div class="text-center z-10 px-6" data-aos="fade-up">
+            <h1 class="text-5xl md:text-7xl title-font text-white leading-none mb-6">
+                Selamat Ulang Tahun<br>ke-23
+            </h1>
+            <p class="text-6xl md:text-8xl font-bold text-white mt-4">Sania Wildasari</p>
+            <p class="text-2xl text-white/90 mt-10">Semoga tahun ini penuh kebahagiaan dan mimpi yang tercapai 💕</p>
+        </div>
+    </section>
+
+    <!-- PAGE 7: Doa & Harapan -->
+    <section id="page7" class="section bg-white hidden">
+        <div class="max-w-2xl mx-auto px-6 text-center" data-aos="fade-up">
+            <h2 class="text-4xl md:text-5xl title-font mb-12">Doa dan Harapan Saya</h2>
+            <div class="space-y-8 text-xl">
+                <p>• Semoga kesehatan selalu menyertai kamu setiap hari</p>
+                <p>• Semoga kebahagiaan selalu memenuhi hati kamu</p>
+                <p>• Semoga semua impian dan kesuksesan kamu tercapai dengan lancar</p>
+                <p>• Dan semoga kita terus bersama menjalani hari-hari yang indah</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE 8: Galeri Foto (Ganti link foto di sini) -->
+    <section id="page8" class="section bg-[#FCE4EC]/30 hidden">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-4xl title-font text-center mb-12" data-aos="fade-up">Kenangan Kita</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-6" data-aos="fade-up">
+                <img src="https://drive.google.com/uc?id=1Uski325VHvpDA0E_mTlAE244yz1uwB2w" alt="Foto 1" class="rounded-3xl shadow-md h-80 w-full object-cover">
+                <img src="https://drive.google.com/uc?id=1lBELeQouaUy-ZS7_lNlCY5s9CtUsu-PQ" alt="Foto 2" class="rounded-3xl shadow-md h-80 w-full object-cover">
+                <img src="https://drive.google.com/uc?id=1tWTTy9oVCeQseZXwXfWp7NSQhes_kdCe" alt="Foto 3" class="rounded-3xl shadow-md h-80 w-full object-cover">
+                <img src="https://drive.google.com/uc?id=13ouXY5CclFKKo3BjDwOeHdcEHjSBRZRJ" alt="Foto 3" class="rounded-3xl shadow-md h-80 w-full object-cover">
+                <img src="https://drive.google.com/uc?id=1M4zbbePBKSD1a4yKtSWtXyiVLPF2mCvr" alt="Foto 3" class="rounded-3xl shadow-md h-80 w-full object-cover">
+                <img src="https://drive.google.com/uc?id=1mzC98mWXGVfuw0D8fh74w8eoXabhi1bI" alt="Foto 3" class="rounded-3xl shadow-md h-80 w-full object-cover">
+                <!-- Tambahkan lebih banyak img di sini -->
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE 9: Penutup -->
+    <section id="page9" class="section bg-white hidden">
+        <div class="max-w-2xl mx-auto px-6 text-center" data-aos="fade-up">
+            <h2 class="text-4xl md:text-5xl title-font mb-10">Penutup</h2>
+            <p class="text-xl leading-relaxed mb-12">
+                Maafkan segala kekurangan saya. Saya masih belajar, tapi saya berjanji akan mencintai kamu lebih baik setiap harinya.
+            </p>
+            <p class="text-3xl font-light text-[#F8BBD0]">Saya selalu mencintai kamu, Sania 💕</p>
+            <p class="mt-16 text-sm">— Fika Zibrana Musyafa</p>
+        </div>
+    </section>
+
+    <!-- Kontrol Musik -->
+    <div class="fixed bottom-6 right-6 z-50">
         <button onclick="toggleMusic()" id="music-btn"
-                class="px-5 py-2 bg-[#F8BBD0] text-white rounded-full text-sm font-medium">
-            ▶ Play Music
+                class="px-6 py-3 bg-[#F8BBD0] text-white rounded-full text-sm font-medium shadow-lg">
+            ▶ Putar Lagu
         </button>
     </div>
 
-    <!-- Hidden Audio -->
+    <!-- Audio Lagu Romantis Indonesia (Ganti linknya) -->
     <audio id="bg-music" loop>
-        <!-- Ganti dengan link musik piano romantis yang kamu suka. Contoh sementara (cari di Pixabay atau AShamaluevMusic untuk link direct mp3) -->
+        <!-- Contoh link (ganti dengan link mp3 yang kamu punya) -->
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        <!-- Saran: Cari di Pixabay "piano romantis" atau upload lagu ke Google Drive lalu ambil direct link -->
     </audio>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Inisialisasi AOS
-        AOS.init({
-            duration: 1200,
-            once: true,
-            offset: 100
-        });
+        AOS.init({ duration: 1000, once: true });
 
-        // Floating hearts
+        let isEnvelopeOpened = false;
+
         function createHeart() {
             const heart = document.createElement('div');
-            heart.className = 'heart-particle';
-            heart.textContent = ['❤️', '💗', '💖', '💕'][Math.floor(Math.random() * 4)];
+            heart.className = 'floating-heart';
+            heart.textContent = '💗';
             heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = (Math.random() * 8 + 12) + 's';
-            heart.style.opacity = Math.random() * 0.5 + 0.4;
+            heart.style.animationDuration = (Math.random() * 10 + 12) + 's';
             document.getElementById('hearts-container').appendChild(heart);
-            
             setTimeout(() => heart.remove(), 25000);
         }
 
-        // Confetti untuk halaman birthday
-        function launchConfetti() {
-            const container = document.getElementById('confetti-container');
-            const colors = ['#F8BBD0', '#FCE4EC', '#FF69B4', '#FFB6C1'];
-            
-            for (let i = 0; i < 80; i++) {
-                setTimeout(() => {
-                    const conf = document.createElement('div');
-                    conf.className = 'confetti';
-                    conf.style.left = Math.random() * 100 + 'vw';
-                    conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                    conf.style.width = conf.style.height = (Math.random() * 8 + 6) + 'px';
-                    conf.style.animationDuration = (Math.random() * 3 + 4) + 's';
-                    container.appendChild(conf);
-                    setTimeout(() => conf.remove(), 8000);
-                }, i * 8);
-            }
-        }
+        function openEnvelope() {
+            if (isEnvelopeOpened) return;
+            isEnvelopeOpened = true;
 
-        // Open first page
-        function openMessage() {
-            document.getElementById('page1').scrollIntoView({ behavior: 'smooth' });
+            const envelope = document.getElementById('envelope');
+            envelope.classList.add('opened');
+
+            // Mulai musik setelah buka
             setTimeout(() => {
-                // Mulai musik otomatis setelah klik open
-                const audio = document.getElementById('bg-music');
-                audio.play().catch(() => {});
-                document.getElementById('music-btn').textContent = '❚❚ Pause Music';
+                document.getElementById('bg-music').play().catch(() => {});
+                document.getElementById('music-btn').textContent = '❚❚ Pause';
             }, 800);
+
+            // Sembunyikan cover dan tampilkan halaman selanjutnya dengan scroll
+            setTimeout(() => {
+                document.getElementById('cover').classList.add('hidden');
+                
+                // Tampilkan semua section lain
+                document.querySelectorAll('section[id^="page"]').forEach(section => {
+                    section.classList.remove('hidden');
+                });
+
+                // Scroll otomatis ke page 2
+                document.getElementById('page2').scrollIntoView({ behavior: 'smooth' });
+            }, 1600);
         }
 
-        // Toggle music
-        let isPlaying = false;
         function toggleMusic() {
             const audio = document.getElementById('bg-music');
             const btn = document.getElementById('music-btn');
-            
-            if (isPlaying) {
-                audio.pause();
-                btn.textContent = '▶ Play Music';
-            } else {
+            if (audio.paused) {
                 audio.play();
-                btn.textContent = '❚❚ Pause Music';
+                btn.textContent = '❚❚ Pause';
+            } else {
+                audio.pause();
+                btn.textContent = '▶ Putar Lagu';
             }
-            isPlaying = !isPlaying;
         }
 
         // Inisialisasi
-        window.onload = function() {
-            // Buat floating hearts terus menerus
-            setInterval(createHeart, 280);
+        window.onload = () => {
+            setInterval(createHeart, 300);
             
-            // Launch confetti di halaman birthday saat scroll ke sana
+            // Confetti di halaman ulang tahun
             const observer = new IntersectionObserver((entries) => {
                 if (entries[0].isIntersecting) {
                     launchConfetti();
                 }
-            }, { threshold: 0.5 });
-            
-            observer.observe(document.getElementById('page6'));
-            
-            // Tailwind script sudah di-load via CDN
-            console.log('%c🎉 Website Ulang Tahun Sania siap! Semoga dia terharu 💕', 'color:#F8BBD0; font-size:16px');
+            });
+            if (document.getElementById('page6')) observer.observe(document.getElementById('page6'));
         };
+
+        function launchConfetti() {
+            const container = document.getElementById('confetti-container');
+            const colors = ['#F8BBD0', '#FF69B4', '#FFB6C1'];
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    const c = document.createElement('div');
+                    c.style.position = 'absolute';
+                    c.style.left = Math.random() * 100 + 'vw';
+                    c.style.width = c.style.height = '8px';
+                    c.style.background = colors[Math.floor(Math.random()*colors.length)];
+                    c.style.borderRadius = '50%';
+                    c.style.animation = `confetti-fall ${Math.random()*3 + 4}s linear forwards`;
+                    container.appendChild(c);
+                    setTimeout(() => c.remove(), 8000);
+                }, i * 6);
+            }
+        }
     </script>
 </body>
 </html>
