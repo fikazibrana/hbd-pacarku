@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Spesial untuk [Nama Pacar] 💕</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Dancing+Script:wght@400;700&display=swap');
+        
+        :root {
+            --gold: #f5d0a8;
+        }
+        
+        * {
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+        }
+        
+        body {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .title-font {
+            font-family: 'Dancing Script', cursive;
+        }
+        
+        /* Background elegan */
+        .elegant-bg {
+            background: linear-gradient(135deg, #1a0f2e 0%, #3a1a2e 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .elegant-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 20%, rgba(245, 208, 168, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(245, 208, 168, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+            animation: subtleGlow 15s ease infinite;
+        }
+        
+        @keyframes subtleGlow {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+        
+        /* Tombol buka yang sangat elegan */
+        .open-button {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .open-button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 40%;
+            height: 300%;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+            transform: skewX(-25deg);
+            animation: shine 4s linear infinite;
+        }
+        
+        @keyframes shine {
+            100% { transform: translateX(300%); }
+        }
+        
+        /* Animasi pembuka (envelope + flap) */
+        .envelope {
+            width: 420px;
+            height: 280px;
+            background: #f5e8d0;
+            border-radius: 8px;
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4),
+                        inset 0 0 60px rgba(245, 208, 168, 0.6);
+            position: relative;
+            margin: 0 auto;
+            perspective: 1200px;
+        }
+        
+        .flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 55%;
+            background: linear-gradient(to bottom, #e8d4b0, #d4b88a);
+            clip-path: polygon(0 0, 50% 100%, 100% 0);
+            transform-origin: top center;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+            z-index: 10;
+            transition: transform 1.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+        
+        .envelope.opened .flap {
+            transform: rotateX(180deg);
+        }
+        
+        .envelope-body {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #f5e8d0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.8s ease 0.6s;
+        }
+        
+        .envelope.opened .envelope-body {
+            opacity: 1;
+        }
+        
+        /* Animasi bunga masuk */
+        @keyframes flowerFall {
+            0% {
+                transform: translateY(-120vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(120vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        
+        .flower {
+            position: absolute;
+            font-size: 2.8rem;
+            animation: flowerFall linear forwards;
+            pointer-events: none;
+            filter: drop-shadow(0 10px 8px rgba(245, 208, 168, 0.5));
+            z-index: 30;
+        }
+        
+        /* Pesan akhir dengan fade + scale */
+        .message-card {
+            animation: messagePop 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        @keyframes messagePop {
+            0% {
+                opacity: 0;
+                transform: scale(0.6) translateY(40px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        
+        /* Efek glow teks */
+        .glow-gold {
+            text-shadow: 
+                0 0 20px rgb(245 208 168),
+                0 0 40px rgb(245 208 168);
+        }
+    </style>
+</head>
+<body class="elegant-bg min-h-screen text-[#f5d0a8] flex items-center justify-center overflow-hidden">
+    
+    <!-- LAYAR 1: Tombol buka (seperti undangan tertutup) -->
+    <div id="initial-screen" class="flex flex-col items-center justify-center min-h-screen w-full px-6 text-center">
+        <div class="max-w-md mx-auto">
+            <!-- Hiasan kecil di atas -->
+            <div class="flex justify-center gap-4 mb-8 opacity-75">
+                <span class="text-5xl">🌹</span>
+                <span class="text-5xl">💖</span>
+                <span class="text-5xl">🌺</span>
+            </div>
+            
+            <h1 class="text-6xl md:text-7xl title-font mb-3 tracking-widest glow-gold">
+                Undangan Spesial
+            </h1>
+            <p class="text-4xl title-font text-[#f5d0a8]/90 mb-12">
+                Untuk <span id="nama-placeholder-1" class="text-[#f5d0a8] font-bold">[Nama Pacar]</span>
+            </p>
+            
+            <div class="mx-auto mb-10 w-80 h-80 flex items-center justify-center">
+                <div class="envelope bg-[#f5e8d0] shadow-2xl rounded-2xl p-8 relative flex items-center justify-center text-[#3a1a2e] text-6xl">
+                    💌
+                </div>
+            </div>
+            
+            <button onclick="startOpening()" 
+                    class="open-button mx-auto px-14 py-7 bg-[#3a1a2e] hover:bg-[#4a2a3e] text-[#f5d0a8] text-3xl font-medium rounded-3xl shadow-2xl flex items-center gap-4 border-2 border-[#f5d0a8]/30 hover:border-[#f5d0a8]">
+                <span>Buka Undangan</span>
+                <span class="text-4xl">→</span>
+            </button>
+            
+            <p class="mt-10 text-[#f5d0a8]/60 text-lg italic">Hanya untuk kamu, sayangku</p>
+        </div>
+    </div>
+    
+    <!-- LAYAR 2: Animasi pembuka (envelope terbuka) -->
+    <div id="opening-screen" class="hidden flex-col items-center justify-center min-h-screen w-full px-6 text-center">
+        <div class="max-w-md mx-auto">
+            <h2 class="text-5xl title-font mb-12 text-[#f5d0a8]/90">Sedang membuka undanganmu...</h2>
+            
+            <div id="envelope-container" class="envelope mx-auto">
+                <!-- Flap -->
+                <div class="flap flex items-center justify-center text-6xl">
+                    💌
+                </div>
+                <!-- Body (isi setelah terbuka) -->
+                <div class="envelope-body">
+                    <div class="text-center">
+                        <p class="text-5xl text-[#3a1a2e] title-font">💖</p>
+                        <p class="text-[#3a1a2e] text-2xl mt-4 font-light">Untuk [Nama Pacar]</p>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="mt-16 text-[#f5d0a8]/50 text-sm">Tunggu sebentar… keajaiban sedang datang ✨</p>
+        </div>
+    </div>
+    
+    <!-- LAYAR 3: Animasi bunga masuk (full screen) -->
+    <div id="flower-screen" class="hidden flex-col items-center justify-center min-h-screen w-full px-6 text-center relative overflow-hidden">
+        <div id="flower-container" class="absolute inset-0 pointer-events-none"></div>
+        
+        <div class="relative z-10 text-center">
+            <h2 class="text-6xl title-font mb-8 glow-gold">Bunga-bunga untukmu…</h2>
+            <p class="text-[#f5d0a8]/70 text-2xl max-w-xs mx-auto">Karena kamu layak mendapatkan keindahan yang tak terhingga</p>
+        </div>
+    </div>
+    
+    <!-- LAYAR 4: Ucapan selamat ulang tahun -->
+    <div id="message-screen" class="hidden flex-col items-center justify-center min-h-screen w-full px-6 text-center relative">
+        <div class="message-card max-w-2xl mx-auto bg-white/10 backdrop-blur-xl border border-[#f5d0a8]/30 rounded-3xl p-12 shadow-2xl">
+            <div class="flex justify-center mb-8 text-7xl">🌹🌺💐🌸</div>
+            
+            <h1 id="greeting" class="text-6xl md:text-7xl title-font leading-none mb-6 glow-gold">
+                Selamat Ulang Tahun,<br>
+                <span id="nama-placeholder-2" class="text-[#f5d0a8]">[Nama Pacar]</span> 💕
+            </h1>
+            
+            <!-- Pesan yang bisa kamu ganti -->
+            <p id="custom-message" class="text-2xl leading-relaxed text-[#f5d0a8]/90 font-light max-w-lg mx-auto">
+                Hari ini adalah hari yang paling spesial karena kamu lahir ke dunia ini. 
+                Terima kasih telah menjadi cahaya, cinta, dan alasan aku tersenyum setiap hari. 
+                Semoga tahun ini membawa semua kebahagiaan yang kamu impikan. 
+                Aku sayang kamu selamanya.
+            </p>
+            
+            <div class="flex justify-center gap-6 mt-12">
+                <div onclick="restart()" class="cursor-pointer text-[#f5d0a8]/70 hover:text-[#f5d0a8] flex items-center gap-2 text-lg">
+                    <span>🎟️</span> Buka lagi
+                </div>
+                <div class="h-6 w-px bg-[#f5d0a8]/30"></div>
+                <a href="https://wa.me/?text=Selamat%20ulang%20tahun%20sayangku%20%F0%9F%92%95" 
+                   target="_blank"
+                   class="cursor-pointer text-[#f5d0a8]/70 hover:text-[#f5d0a8] flex items-center gap-2 text-lg">
+                    <span>💌</span> Kirim ke dia
+                </a>
+            </div>
+            
+            <p class="mt-16 text-[#f5d0a8]/40 text-sm">Dibuat dengan cinta khusus untukmu</p>
+        </div>
+    </div>
+
+    <script>
+        // === KONFIGURASI (GANTI SESUAI KEBUTUHAN) ===
+        const namaPacar = "Nama Pacar Kamu";           // ← GANTI DENGAN NAMA PACAR
+        const pesanCustom = `Hari ini adalah hari yang paling spesial karena kamu lahir ke dunia ini. 
+Terima kasih telah menjadi cahaya, cinta, dan alasan aku tersenyum setiap hari. 
+Semoga tahun ini membawa semua kebahagiaan yang kamu impikan. 
+Aku sayang kamu selamanya.`;
+        
+        // Tailwind setup
+        function initTailwind() {
+            tailwind.config = {
+                content: [],
+                theme: { extend: {} }
+            }
+        }
+        
+        // Buat bunga yang jatuh
+        function createFlower() {
+            const container = document.getElementById('flower-container');
+            const flower = document.createElement('div');
+            flower.className = 'flower';
+            
+            // Pilih emoji bunga secara acak
+            const flowers = ['🌹', '🌸', '🌺', '💐', '🌼', '🥀', '🌻'];
+            flower.textContent = flowers[Math.floor(Math.random() * flowers.length)];
+            
+            // Posisi acak
+            flower.style.left = Math.random() * 100 + 'vw';
+            flower.style.top = '-10vh';
+            
+            // Ukuran acak
+            const size = Math.random() * 1.8 + 1.8;
+            flower.style.fontSize = `${size}rem`;
+            
+            // Durasi animasi acak (4-8 detik)
+            const duration = Math.random() * 4 + 4.5;
+            flower.style.animationDuration = `${duration}s`;
+            
+            // Delay kecil agar tidak semua muncul bersamaan
+            flower.style.animationDelay = Math.random() * 800 + 'ms';
+            
+            // Rotasi acak agar lebih natural
+            flower.style.setProperty('--tw-rotate', (Math.random() * 360) + 'deg');
+            
+            container.appendChild(flower);
+            
+            // Hapus setelah animasi selesai
+            setTimeout(() => {
+                flower.remove();
+            }, duration * 1000 + 2000);
+        }
+        
+        // Mulai hujan bunga
+        function startFlowerRain() {
+            const container = document.getElementById('flower-container');
+            container.innerHTML = '';
+            
+            // Buat 80 bunga secara bertahap
+            let count = 0;
+            const interval = setInterval(() => {
+                createFlower();
+                count++;
+                if (count > 80) clearInterval(interval);
+            }, 18);
+            
+            // Terus tambah bunga ringan selama layar aktif
+            setInterval(() => {
+                if (!document.getElementById('flower-screen').classList.contains('hidden')) {
+                    createFlower();
+                }
+            }, 120);
+        }
+        
+        // Mulai animasi pembuka
+        function startOpening() {
+            const initial = document.getElementById('initial-screen');
+            const opening = document.getElementById('opening-screen');
+            
+            // Ganti nama di placeholder
+            document.getElementById('nama-placeholder-1').textContent = namaPacar;
+            
+            initial.classList.add('hidden');
+            opening.classList.remove('hidden');
+            opening.classList.add('flex');
+            
+            // Jalankan animasi envelope
+            const envelope = document.getElementById('envelope-container');
+            setTimeout(() => {
+                envelope.classList.add('opened');
+            }, 400);
+            
+            // Setelah animasi pembuka selesai → lanjut ke bunga
+            setTimeout(() => {
+                opening.classList.add('hidden');
+                opening.classList.remove('flex');
+                
+                const flowerScreen = document.getElementById('flower-screen');
+                flowerScreen.classList.remove('hidden');
+                flowerScreen.classList.add('flex');
+                
+                startFlowerRain();
+                
+                // Setelah 4 detik bunga muncul → tampilkan ucapan
+                setTimeout(() => {
+                    showFinalMessage();
+                }, 4200);
+            }, 2800); // durasi animasi pembuka
+        }
+        
+        // Tampilkan ucapan akhir
+        function showFinalMessage() {
+            const flowerScreen = document.getElementById('flower-screen');
+            const messageScreen = document.getElementById('message-screen');
+            
+            flowerScreen.classList.add('hidden');
+            flowerScreen.classList.remove('flex');
+            
+            messageScreen.classList.remove('hidden');
+            messageScreen.classList.add('flex');
+            
+            // Isi nama dan pesan
+            document.getElementById('nama-placeholder-2').textContent = namaPacar;
+            document.getElementById('custom-message').innerHTML = pesanCustom.replace(/\n/g, '<br><br>');
+            
+            // Efek tambahan: sedikit bunga terakhir
+            for (let i = 0; i < 25; i++) {
+                setTimeout(() => {
+                    createFlower();
+                }, i * 30);
+            }
+        }
+        
+        // Restart seluruh proses
+        function restart() {
+            // Reset semua layar
+            document.getElementById('initial-screen').classList.remove('hidden');
+            document.getElementById('opening-screen').classList.add('hidden');
+            document.getElementById('flower-screen').classList.add('hidden');
+            document.getElementById('message-screen').classList.add('hidden');
+            
+            // Reset envelope
+            const envelope = document.getElementById('envelope-container');
+            envelope.classList.remove('opened');
+        }
+        
+        // Inisialisasi saat halaman dimuat
+        window.onload = function() {
+            initTailwind();
+            console.log('%c🎉 Undangan Ulang Tahun Elegan siap! Ganti nama dan pesan di script bagian atas.', 'color:#f5d0a8; font-family: Dancing Script; font-size:18px');
+        };
+    </script>
+</body>
+</html>
